@@ -25,8 +25,9 @@ suite('Functional Tests', function() {
         delete_password: 'what?'
       })
       .end(function(error, result) {
+        assert.equal(result.status, 200, 'status should be 200');
         assert.equal(result.body.text, 'Test text', 'Should equal Test text');
-        assert.equal(result.body.delete_password, '', 'Should equal Test text');
+        assert.equal(result.body.delete_password, 'what?', 'Should equal what?');
       })
     });
     

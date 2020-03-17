@@ -9,7 +9,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-const Thread = require('../modeles/thread');
+const Thread = require('../models/thread');
 module.exports = function (app) {
   
   app.route('/api/threads/:board')
@@ -22,6 +22,21 @@ module.exports = function (app) {
       req.body.text,
       req.body.delete_password
     )
+    console.log(newThread);
+    newThread.save()
+    .then(res => {
+      if (res.ops[0] > 0) {
+        return res.json({
+          message: 'Thread saved success'
+        });
+      }
+      return res.json({
+        message: 'Thread not saved'
+      });
+    })
+    .catch(error => {
+      throw error;
+    })
   })
   .put((req, res) => {
     
