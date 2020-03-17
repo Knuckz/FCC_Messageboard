@@ -19,43 +19,50 @@ suite('Functional Tests', function() {
     
     suite('POST', function() {
       chai.request(server)
-      .post('/api/threads/:board')
-      .
+      .post('/api/threads/main') //board = main
+      .send({
+        text: 'Test text',
+        delete_password: 'what?'
+      })
+      .end(function(error, result) {
+        assert.equal(result.body.text, 'Test text', 'Should equal Test text');
+        assert.equal(result.body.delete_password, '', 'Should equal Test text');
+      })
     });
     
-    suite('GET', function() {
+//     suite('GET', function() {
       
-    });
+//     });
     
-    suite('DELETE', function() {
+//     suite('DELETE', function() {
       
-    });
+//     });
     
-    suite('PUT', function() {
+//     suite('PUT', function() {
       
-    });
+//     });
     
 
   });
   
-  suite('API ROUTING FOR /api/replies/:board', function() {
+//   suite('API ROUTING FOR /api/replies/:board', function() {
     
-    suite('POST', function() {
+//     suite('POST', function() {
       
-    });
+//     });
     
-    suite('GET', function() {
+//     suite('GET', function() {
       
-    });
+//     });
     
-    suite('PUT', function() {
+//     suite('PUT', function() {
       
-    });
+//     });
     
-    suite('DELETE', function() {
+//     suite('DELETE', function() {
       
-    });
+//     });
     
-  });
+//   });
 
 });

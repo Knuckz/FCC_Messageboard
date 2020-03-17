@@ -18,7 +18,9 @@ module.exports = function (app) {
   })
   .post((req, res) => {
     let newThread = new Thread(
-      
+      req.params.board,
+      req.body.text,
+      req.body.delete_password
     )
   })
   .put((req, res) => {
