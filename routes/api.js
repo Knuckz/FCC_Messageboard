@@ -10,6 +10,8 @@
 
 var expect = require('chai').expect;
 const Thread = require('../models/thread');
+const Reply = require('../models/reply');
+
 module.exports = function (app) {
   
   app.route('/api/threads/:board')
@@ -26,7 +28,8 @@ module.exports = function (app) {
     .then(ret => {
       if (ret.result.n > 0) {
         res.json({
-          ...ret.ops[0]
+          ...ret.ops[0],
+          message: 'Success'
         })
       }
     })
@@ -46,7 +49,24 @@ module.exports = function (app) {
     
   })
   .post((req, res) => {
+    let newReply = new Reply(
+      req.params.board,
+      req.body.text,
+      req.body.delete_password
+    );
     
+    newReply.save()
+    .then(ret => {
+      if (ret.result.n > 0) {
+        res.json({
+          ...ret.ops[0],
+          message: 'Success'
+        });
+      }
+    })
+    .catch(error => {
+      throw error;
+    })
   })
 
 };
