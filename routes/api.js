@@ -24,15 +24,12 @@ module.exports = function (app) {
     )
     console.log(newThread);
     newThread.save()
-    .then(res => {
-      if (res.ops[0] > 0) {
-        return res.json({
-          message: 'Thread saved success'
-        });
+    .then(ret => {
+      if (ret.ops[0] > 0) {
+        return res.send(
+          ...ret
+        );
       }
-      return res.json({
-        message: 'Thread not saved'
-      });
     })
     .catch(error => {
       throw error;
