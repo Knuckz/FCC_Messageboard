@@ -17,7 +17,7 @@ suite('Functional Tests', function() {
 
   suite('API ROUTING FOR /api/threads/:board', function() {
     
-    test('Post threads returns correct status and body', function() {
+    test('Post threads returns correct status and body', function(done) {
       chai.request(server)
       .post('/api/threads/main') //board = main
       .send({
