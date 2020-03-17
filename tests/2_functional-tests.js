@@ -48,11 +48,17 @@ suite('Functional Tests', function() {
 
   });
   
-//   suite('API ROUTING FOR /api/replies/:board', function() {
+  suite('API ROUTING FOR /api/replies/:board', function() {
     
-//     suite('POST', function() {
-      
-//     });
+    suite('POST', function() {
+      test('Test return values of reply post', function(done) {
+        chai.request(server)
+        .post('/api/replies/main')
+        .send({
+          
+        })
+      })
+    });
     
 //     suite('GET', function() {
       
@@ -66,6 +72,6 @@ suite('Functional Tests', function() {
       
 //     });
     
-//   });
+   });
 
 });

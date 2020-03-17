@@ -24,6 +24,20 @@ class Thread {
     
     return dbResponse;
   }
+  
+  static async updateBumpTime(idToUpdate) {
+    const db = database.getDb();
+    let response;
+    
+    try {
+      response = await db.collection('threads')
+        .findOneAndUpdate({ _id: mongodb.ObjectId(idToUpdate) }, { bumped_on: new Date() })
+    } catch(error) {
+      throw error;
+    }
+    
+    return response;
+  }
 }
 
 module.exports = Thread;
