@@ -24,8 +24,7 @@ module.exports = function (app) {
     )
     newThread.save()
     .then(ret => {
-      if (ret.ops[0] > 0) {
-        let returnVal = ret.ops[0];
+      if (ret.result.n > 0) {
         res.json({
           ...ret.ops[0]
         })
