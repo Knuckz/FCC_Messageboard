@@ -18,7 +18,9 @@ suite('Functional Tests', function() {
   suite('API ROUTING FOR /api/threads/:board', function() {
     
     suite('POST', function() {
-      
+      chai.request(server)
+      .post('/api/threads/:board')
+      .
     });
     
     suite('GET', function() {

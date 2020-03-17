@@ -2,7 +2,8 @@ const mongodb = require('mongodb');
 const database = require('../util/database');
 
 class thread {
-  constructor(text, delete_password, replies) {
+  constructor(board, text, delete_password, replies) {
+    this.board = board
     this.text = text;
     this.delete_password = delete_password;
     this.created_on = null;
