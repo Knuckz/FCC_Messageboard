@@ -22,13 +22,12 @@ module.exports = function (app) {
       req.body.text,
       req.body.delete_password
     )
-    console.log(newThread);
     newThread.save()
     .then(ret => {
       if (ret.ops[0] > 0) {
-        return res.send(
-          ...ret
-        );
+        res.json({
+          ...ret.ops[0]
+        })
       }
     })
     .catch(error => {
@@ -42,6 +41,12 @@ module.exports = function (app) {
     
   })
     
-  app.route('/api/replies/:board');
+  app.route('/api/replies/:board')
+  .get((req, res) => {
+    
+  })
+  .post((req, res) => {
+    
+  })
 
 };

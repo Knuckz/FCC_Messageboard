@@ -17,7 +17,7 @@ class Thread {
     let dbResponse;
     this.created_on = new Date();
     try {
-      dbResponse = await db.collection('threads').insertOne(...this)
+      dbResponse = await db.collection('threads').insertOne(this)
     } catch(error) {
       throw error;
     }

@@ -17,7 +17,7 @@ suite('Functional Tests', function() {
 
   suite('API ROUTING FOR /api/threads/:board', function() {
     
-    suite('POST', function() {
+    test('Post threads returns correct status and body', function() {
       chai.request(server)
       .post('/api/threads/main') //board = main
       .send({
@@ -25,10 +25,11 @@ suite('Functional Tests', function() {
         delete_password: 'what?'
       })
       .end(function(error, result) {
-        console.log(result.body);
+        console.log(result);
         assert.equal(result.status, 200, 'status should be 200');
         assert.equal(result.body.text, 'Test text', 'Should equal Test text');
         assert.equal(result.body.message, 'Success', 'Should equal success');
+        done();
       })
     });
     
