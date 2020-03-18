@@ -35,7 +35,7 @@ class Thread {
         console.log('reply: ');
         console.log(reply);
         response = await db.collection('threads')
-          .findOneAndUpdate({ _id: mongodb.ObjectId(idToUpdate) }, { bumped_on: new Date(), replies: [...this.replies, reply] })  
+          .findOneAndUpdate({ _id: mongodb.ObjectId(idToUpdate) }, { bumped_on: new Date(), $push: { "replies": reply }})  
       }
     } catch(error) {
       throw error;
