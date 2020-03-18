@@ -49,6 +49,7 @@ module.exports = function (app) {
     
   })
   .post((req, res) => {
+    let response = {};
     let newReply = new Reply(
       req.body.thread_id,
       req.body.text,
@@ -58,11 +59,14 @@ module.exports = function (app) {
     newReply.save()
     .then(ret => {
       if (ret.result.n > 0) {
-        res.json({
+        return res.json({
           ...ret.ops[0],
           message: 'Success'
         });
       }
+      return res.json({
+        message: 'Error'
+      })
     })
     .catch(error => {
       throw error;
