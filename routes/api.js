@@ -95,5 +95,16 @@ module.exports = function (app) {
       throw error;
     })
   })
+  .delete((req, res) => {
+    Reply.deleteReply(req.body.reply_id)
+    .then(ret => {
+      console.log(ret);
+    })
+    .catch(error => {
+      throw error;
+    });
+  })
+  .put((req, res) => {
 
+  })
 };

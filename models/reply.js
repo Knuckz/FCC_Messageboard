@@ -36,15 +36,22 @@ class reply {
   
   static async deleteReply(idToDelete) {
     const db = database.getDb();
-    let result
+    let repliesResult;
+    let threadsResult;
     
     try {
-      result = await db.collection('replies').findOneAndDelete({_id: mongodb.ObjectId(idToDelete) });
-      await db.collectin('threads').findOneAndUpdate()
+      repliesResult = await db.collection('replies').findOneAndDelete({ _id: mongodb.ObjectId(idToDelete) });
+      threadsResult = await db.collection('threads')
+        .findOneAndUpdate(
+          { _id: mongodb.ObjectId(result.value.thread_id) }, 
+          { $pull: { _id: mongodb.ObjectId(idToDelete) }}
+        )
     } catch(error) {
       throw error; 
     }
-    return result.value;
+    
+    console.log(repliesResult);
+    return repliesResult;
   }
   
   static async reportReply() {
