@@ -50,7 +50,7 @@ module.exports = function (app) {
   })
   .post((req, res) => {
     let newReply = new Reply(
-      req.params.thread_id,
+      req.body.thread_id,
       req.body.text,
       req.body.delete_password
     );
