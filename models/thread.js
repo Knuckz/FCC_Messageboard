@@ -25,13 +25,13 @@ class Thread {
     return dbResponse;
   }
   
-  static async updateBumpTime(idToUpdate) {
+  static async insertReply(idToUpdate, reply) {
     const db = database.getDb();
     let response;
     
     try {
       response = await db.collection('threads')
-        .findOneAndUpdate({ _id: mongodb.ObjectId(idToUpdate) }, { bumped_on: new Date() })
+        .findOneAndUpdate({ _id: mongodb.ObjectId(idToUpdate), replies: [...this.replies, reply] }, { bumped_on: new Date() })
     } catch(error) {
       throw error;
     }

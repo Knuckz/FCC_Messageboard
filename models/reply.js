@@ -16,7 +16,7 @@ class reply {
     try {
       dbResults = await db.collection('replies').insertOne(this);
       if (dbResults.ops[0].thread_id) {
-        updateThreadResults = await Thread.updateBumpTime(this.thread_id);
+        updateThreadResults = await Thread.insertReply(this.thread_id, dbResults.ops[0]);
       }
     } catch(error) {
       throw error;
