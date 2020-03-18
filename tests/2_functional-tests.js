@@ -65,6 +65,8 @@ suite('Functional Tests', function() {
           assert.equal(result.status, 200, 'status code is 200');
           assert.equal(result.body.text, 'Some reply', 'text comes back okay');
           assert.equal(result.body.message, 'Success', 'Success message comes back');
+          assert.isNotNull(result.body.replies[0], 'replies array is not null');
+          assert.isNotNull(result.body.bumped_on, 'bumped on is not null');
           done();
         })
       })
