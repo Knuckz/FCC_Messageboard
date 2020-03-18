@@ -21,6 +21,8 @@ class reply {
     } catch(error) {
       throw error;
     }
+    
+    return dbResults;
   }
 }
 
