@@ -52,7 +52,13 @@ module.exports = function (app) {
     
   app.route('/api/replies/:board')
   .get((req, res) => {
-    
+    Reply.getReplies(req.query.thread_id)
+    .then(ret => {
+      res.json(ret);
+    })
+    .catch(error => {
+      throw error;
+    })
   })
   .post((req, res) => {
     let response = {};
