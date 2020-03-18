@@ -16,6 +16,7 @@ class Thread {
     const db = database.getDb();
     let dbResponse;
     this.created_on = new Date();
+    this.bumped_on = this.created_on;
     try {
       dbResponse = await db.collection('threads').insertOne(this)
     } catch(error) {
@@ -53,6 +54,13 @@ class Thread {
     }
     
     return response;
+  }
+  
+  static async getThreads(boardName) {
+    const db = database.getDb();
+    let result;
+    
+    db.collection('threads').find({board: boardName});
   }
 }
 

@@ -65,10 +65,13 @@ module.exports = function (app) {
         });
       }
       return res.json({
-        message: 'Error'
+        message: 'No reply saved'
       })
     })
     .catch(error => {
+      res.json({
+        message: 'Error saving reply'
+      })
       throw error;
     })
   })
