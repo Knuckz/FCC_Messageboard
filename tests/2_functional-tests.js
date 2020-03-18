@@ -40,7 +40,8 @@ suite('Functional Tests', function() {
       .get('/api/threads/main')
       .send({})
       .end(function(error, result) {
-        console.log(result.body);
+        assert.equal(result.status, 200, 'status is 200');
+        assert.typeOf(result.body, 'array', 'result is array');
       })
     });
     

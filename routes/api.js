@@ -21,7 +21,7 @@ module.exports = function (app) {
         res.json(ret)
     })
     .catch(error => {
-      
+      throw error;
     })
   })
   .post((req, res) => {
