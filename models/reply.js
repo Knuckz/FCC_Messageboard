@@ -34,17 +34,17 @@ class reply {
     return dbResults;
   }
   
-  static async deleteReply() {
+  static async deleteReply(idToDelete) {
     const db = database.getDb();
     let result
     
     try {
-      
+      result = await db.collection('replies').findOneAndDelete({_id: mongodb.ObjectId(idToDelete) });
+      await db.collectin('threads').findOneAndUpdate()
     } catch(error) {
-      
+      throw error; 
     }
-    
-    return result;
+    return result.value;
   }
   
   static async reportReply() {

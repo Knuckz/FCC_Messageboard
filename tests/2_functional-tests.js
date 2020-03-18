@@ -48,7 +48,7 @@ suite('Functional Tests', function() {
     
     test('DELETE', function(done) {
       chai.request(server)
-      .get('/api/threads/main')
+      .delete('/api/threads/main')
       .send({
         thread_id: globalId,
         delete_password: 'what?'

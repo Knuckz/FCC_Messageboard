@@ -33,18 +33,18 @@ class Thread {
     try {
       if (!!reply && idToUpdate) {
         response = await db.collection('threads')
-          .findOneAndUpdate(
-          { _id: mongodb.ObjectId(idToUpdate) }, 
-          { 
-            $set: { bumped_on: new Date() },
-            $push: {
-              replies: {
-                _id: reply._id,
-                text: reply.text,
-                delete_password: reply.delete_password,
-              }
+        .findOneAndUpdate(
+        { _id: mongodb.ObjectId(idToUpdate) }, 
+        { 
+          $set: { bumped_on: new Date() },
+          $push: {
+            replies: {
+              _id: reply._id,
+              text: reply.text,
+              delete_password: reply.delete_password,
             }
-          })  
+          }
+        });
       }
     } catch(error) {
       throw error;
@@ -71,12 +71,11 @@ class Thread {
     let result
     
     try {
-      result = await db.collection('threads').findOneAndDelete({_id: idToDelete });
+      result = await db.collection('threads').findOneAndDelete({_id: mongodb.ObjectId(idToDelete) });
     } catch(error) {
       throw error; 
     }
-    
-    return result;
+    return result.value;
   }
   
   static async reportThread() {
