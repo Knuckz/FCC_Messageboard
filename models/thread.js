@@ -30,8 +30,13 @@ class Thread {
     let response;
     
     try {
-      response = await db.collection('threads')
-        .findOneAndUpdate({ _id: mongodb.ObjectId(idToUpdate), replies: [...this.replies, reply] }, { bumped_on: new Date() })
+      if (!!reply && idToUpdate) {
+        console.log('idtoupdate: ', idToUpdate);
+        console.log('reply: ');
+        console.log(reply);
+        response = await db.collection('threads')
+          .findOneAndUpdate({ _id: mongodb.ObjectId(idToUpdate) }, { bumped_on: new Date(), replies: [...this.replies, reply] })  
+      }
     } catch(error) {
       throw error;
     }

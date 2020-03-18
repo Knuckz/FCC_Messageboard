@@ -15,9 +15,8 @@ class reply {
     let updateThreadResults;
     try {
       dbResults = await db.collection('replies').insertOne(this);
-      if (dbResults.ops[0].thread_id) {
-        updateThreadResults = await Thread.insertReply(this.thread_id, dbResults.ops[0]);
-      }
+      console.log(dbResults.ops[0]);
+      updateThreadResults = await Thread.insertReply(this.thread_id, dbResults.ops[0]);
     } catch(error) {
       throw error;
     }
