@@ -43,15 +43,14 @@ class reply {
       repliesResult = await db.collection('replies').findOneAndDelete({ _id: mongodb.ObjectId(idToDelete) });
       threadsResult = await db.collection('threads')
         .findOneAndUpdate(
-          { _id: mongodb.ObjectId(result.value.thread_id) }, 
+          { _id: mongodb.ObjectId(repliesResult.value.thread_id) }, 
           { $pull: { _id: mongodb.ObjectId(idToDelete) }}
         )
     } catch(error) {
       throw error; 
     }
     
-    console.log(repliesResult);
-    return repliesResult;
+    return repliesResult.value._id;
   }
   
   static async reportReply() {

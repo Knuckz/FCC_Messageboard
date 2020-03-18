@@ -98,7 +98,11 @@ module.exports = function (app) {
   .delete((req, res) => {
     Reply.deleteReply(req.body.reply_id)
     .then(ret => {
-      console.log(ret);
+      if (ret) {
+        res.json({
+          message: 'success'
+        });
+      }
     })
     .catch(error => {
       throw error;
