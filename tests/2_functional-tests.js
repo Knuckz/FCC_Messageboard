@@ -35,9 +35,14 @@ suite('Functional Tests', function() {
       })
     });
     
-//     suite('GET', function() {
-      
-//     });
+    test('GET Threads', function(error, result) {
+      chai.request(server)
+      .get('/api/threads/main')
+      .send({})
+      .end(function(error, result) {
+        console.log(result.body);
+      })
+    });
     
 //     suite('DELETE', function() {
       

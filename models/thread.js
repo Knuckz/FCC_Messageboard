@@ -60,7 +60,13 @@ class Thread {
     const db = database.getDb();
     let result;
     
-    db.collection('threads').find({board: boardName});
+    try {
+      result = await db.collection('threads').find({board: boardName}).toArray();
+    } catch(error) {
+      throw error;
+    }
+    
+    return result;
   }
 }
 
