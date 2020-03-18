@@ -15,13 +15,20 @@ class reply {
     let updateThreadResults;
     try {
       dbResults = await db.collection('replies').insertOne(this);
-      console.log(dbResults.ops[0]);
       updateThreadResults = await Thread.insertReply(this.thread_id, dbResults.ops[0]);
     } catch(error) {
       throw error;
     }
     
     return dbResults;
+  }
+  
+  async getReplies(thread_id) {
+    const db = database.getDb();
+    let dbResults;
+    try {
+      
+    }
   }
 }
 

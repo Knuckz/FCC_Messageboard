@@ -32,9 +32,6 @@ class Thread {
     
     try {
       if (!!reply && idToUpdate) {
-        console.log('idtoupdate: ', idToUpdate);
-        console.log('reply: ');
-        console.log(reply);
         response = await db.collection('threads')
           .findOneAndUpdate(
           { _id: mongodb.ObjectId(idToUpdate) }, 

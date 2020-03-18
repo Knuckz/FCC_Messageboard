@@ -27,7 +27,6 @@ suite('Functional Tests', function() {
       })
       .end(function(error, result) {
         globalId = result.body._id;
-        console.log('globalId: ', globalId);
         assert.equal(result.status, 200, 'status should be 200');
         assert.equal(result.body.text, 'Test text', 'Should equal Test text');
         assert.equal(result.body.message, 'Success', 'Should equal success');
@@ -35,13 +34,14 @@ suite('Functional Tests', function() {
       })
     });
     
-    test('GET Threads', function(error, result) {
+    test('GET Threads', function(done) {
       chai.request(server)
       .get('/api/threads/main')
       .send({})
       .end(function(error, result) {
         assert.equal(result.status, 200, 'status is 200');
         assert.typeOf(result.body, 'array', 'result is array');
+        done();
       })
     });
     
@@ -77,9 +77,18 @@ suite('Functional Tests', function() {
       })
     });
     
-//     suite('GET', function() {
-      
-//     });
+    suite('GET', function() {
+      test('GET thread replies', function(done) {
+      chai.request(server)
+      .get(`/api/threads/main?thread_id=${globalId}`)
+      .send({})
+      .end(function(error, result) {
+        assert.equal(result.status, 200, 'status should be 200');
+        assert.equal(result.body.text, 'Test text', 'Should equal Test text');
+        done();
+      })
+    })
+    });
     
 //     suite('PUT', function() {
       
