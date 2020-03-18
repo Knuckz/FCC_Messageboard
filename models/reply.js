@@ -33,6 +33,32 @@ class reply {
     }
     return dbResults;
   }
+  
+  static async deleteReply() {
+    const db = database.getDb();
+    let result
+    
+    try {
+      
+    } catch(error) {
+      
+    }
+    
+    return result;
+  }
+  
+  static async reportReply() {
+    const db = database.getDb();
+    let result
+    
+    try {
+      
+    } catch(error) {
+      
+    }
+    
+    return result;
+  }
 }
 
 module.exports = reply;

@@ -47,7 +47,7 @@ module.exports = function (app) {
     
   })
   .delete((req, res) => {
-    
+    Thread.deleteThread(req.body.thread)
   })
     
   app.route('/api/replies/:board')

@@ -60,15 +60,18 @@ suite('Functional Tests', function() {
       });
     });
     
-    test('PUT', function(done) {
-      chai.request(server)
-      .get('/api/threads/main')
-      .send({})
-      .end(function(error, result) {
-        assert.equal(result.status, 200, 'status is 200');
-        done();
-      });  
-    });
+    // test('PUT', function(done) {
+    //   chai.request(server)
+    //   .get('/api/threads/main')
+    //   .send({
+    //     thread_id: globalId
+    //   })
+    //   .end(function(error, result) {
+    //     assert.equal(result.status, 200, 'status is 200');
+    //     assert.equal(result.body.message, 'success' , 'success message should be returned');
+    //     done();
+    //   });  
+    // });
     
 
   });
@@ -85,7 +88,7 @@ suite('Functional Tests', function() {
           delete_password: 'delete_me'
         })
         .end(function(error, result) {
-          globalReplyId = result.body.reply_id;
+          globalReplyId = result.body._id;
           assert.equal(result.status, 200, 'status code is 200');
           assert.equal(result.body.text, 'Some reply', 'text comes back okay');
           assert.equal(result.body.message, 'Success', 'Success message comes back');
@@ -108,35 +111,38 @@ suite('Functional Tests', function() {
       })
     });
     
-    suite('PUT', function() {
-      test('PUT replies', function(done) {
-        chai.request(server)
-        .put(`/api/replies/main`)
-        .send({})
-        .end(function(error, result) {        
-          assert.equal(result.status, 200, 'status is 200');
-          done();
-        })
-      })
-    });
+//     suite('PUT', function() {
+//       test('PUT replies', function(done) {
+//         chai.request(server)
+//         .put(`/api/replies/main`)
+//         .send({
+//           thread_id: globalId,
+//           _id: globalReplyId
+//         })
+//         .end(function(error, result) {        
+//           assert.equal(result.status, 200, 'status is 200');
+//           assert.equal(result.body.message, 'success' , 'success message should be returned');
+//           done();
+//         })
+//       })
+//     });
     
-    suite('DELETE', function() {
-      test('DELETE replies', function(done) {
-        chai.request(server)
-        .delete(`/api/replies/main`)
-        .send({
-          thread_id: globalId,
-          reply_id: globalReplyId,
-          delete_password: 'delete_me'
-        })
-        .end(function(error, result) {
-          assert.equal(result.status, 200, 'status is 200');
-          assert.equal(result, , '');
-          done();
-        });
-      });
-    });
+//     suite('DELETE', function() {
+//       test('DELETE replies', function(done) {
+//         chai.request(server)
+//         .delete(`/api/replies/main`)
+//         .send({
+//           thread_id: globalId,
+//           reply_id: globalReplyId,
+//           delete_password: 'delete_me'
+//         })
+//         .end(function(error, result) {
+//           assert.equal(result.status, 200, 'status is 200');
+//           assert.equal(result.body.message, 'success' , 'success message should be returned');
+//           done();
+//         });
+//       });
+//     });
     
    });
-
 });

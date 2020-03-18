@@ -65,6 +65,32 @@ class Thread {
     
     return result;
   }
+  
+  static async deleteThread(idToDelete) {
+    const db = database.getDb();
+    let result
+    
+    try {
+      result = await db.collection('threads').findOneAndDelete({_id: idToDelete });
+    } catch(error) {
+      throw error; 
+    }
+    
+    return result;
+  }
+  
+  static async reportThread() {
+    const db = database.getDb();
+    let result;
+    
+    try {
+      
+    } catch(error) {
+      
+    }
+    
+    return result;
+  }
 }
 
 module.exports = Thread;
