@@ -16,13 +16,9 @@ module.exports = function (app) {
   
   app.route('/api/threads/:board')
   .get((req, res) => {
-    Thread.getThreads(req.query.board)
+    Thread.getThreads(req.params.board)
     .then(ret => {
-      console.log(ret);
-        res.json({
-          ret
-        })
-      
+        res.json(ret)
     })
     .catch(error => {
       
