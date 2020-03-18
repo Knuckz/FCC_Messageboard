@@ -38,9 +38,12 @@ class Thread {
           .findOneAndUpdate(
           { _id: mongodb.ObjectId(idToUpdate) }, 
           { 
-            $set: { 
-              bumped_on: new Date()
-            }})  
+            $push: {
+              replies: {
+                ...reply
+              }
+            }
+          })  
       }
     } catch(error) {
       throw error;
