@@ -44,7 +44,7 @@ class reply {
       threadsResult = await db.collection('threads')
         .findOneAndUpdate(
           { _id: mongodb.ObjectId(repliesResult.value.thread_id) }, 
-          { $pull: { _id: mongodb.ObjectId(idToDelete) }}
+          { $pull: { threads: { _id: mongodb.ObjectId(idToDelete) }}}
         )
     } catch(error) {
       throw error; 

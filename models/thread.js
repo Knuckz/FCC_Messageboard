@@ -80,8 +80,7 @@ class Thread {
   
   static async reportThread(idToReport) {
     const db = database.getDb();
-    let result;
-    
+    let result;  
     try {
       result = await db.collection('threads').updateOne({ _id: mongodb.ObjectId(idToReport) }, { $set: {reported: true }});
     } catch(error) {
