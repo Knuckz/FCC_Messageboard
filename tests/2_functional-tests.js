@@ -59,19 +59,19 @@ suite('Functional Tests', function() {
       });  
     });
     
-    // test('DELETE', function(done) {
-    //   chai.request(server)
-    //   .delete('/api/threads/main')
-    //   .send({
-    //     thread_id: globalId,
-    //     delete_password: 'what?'
-    //   })
-    //   .end(function(error, result) {
-    //     assert.equal(result.status, 200, 'status is 200');
-    //     assert.equal(result.body.message, 'success', 'message should be deleted')
-    //     done();
-    //   });
-    // });
+    test('DELETE', function(done) {
+      chai.request(server)
+      .delete('/api/threads/main')
+      .send({
+        thread_id: globalId,
+        delete_password: 'what?'
+      })
+      .end(function(error, result) {
+        assert.equal(result.status, 200, 'status is 200');
+        assert.equal(result.body.message, 'success', 'message should be deleted')
+        done();
+      });
+    });
   });
   
   suite('API ROUTING FOR /api/replies/:board', function() {
@@ -125,22 +125,22 @@ suite('Functional Tests', function() {
       })
     });
     
-    // suite('DELETE', function() {
-    //   test('DELETE replies', function(done) {
-    //     chai.request(server)
-    //     .delete(`/api/replies/main`)
-    //     .send({
-    //       thread_id: globalId,
-    //       reply_id: globalReplyId,
-    //       delete_password: 'delete_me'
-    //     })
-    //     .end(function(error, result) {
-    //       assert.equal(result.status, 200, 'status is 200');
-    //       assert.equal(result.body.message, 'success' , 'success message should be returned');
-    //       done();
-    //     });
-    //   });
-    // });
+    suite('DELETE', function() {
+      test('DELETE replies', function(done) {
+        chai.request(server)
+        .delete(`/api/replies/main`)
+        .send({
+          thread_id: globalId,
+          reply_id: globalReplyId,
+          delete_password: 'delete_me'
+        })
+        .end(function(error, result) {
+          assert.equal(result.status, 200, 'status is 200');
+          assert.equal(result.body.message, 'success' , 'success message should be returned');
+          done();
+        });
+      });
+    });
     
    });
 });
