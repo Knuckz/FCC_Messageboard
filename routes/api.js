@@ -46,7 +46,11 @@ module.exports = function (app) {
   .put((req, res) => {
     Thread.reportThread(req.body.thread_id)
     .then(ret => {
-      res.json(ret);
+      if (ret.modifiedCount > 0) {
+        res.json({
+          message: 'success'
+        })
+      }
     })
     .catch(error => {
       throw error;

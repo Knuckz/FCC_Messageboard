@@ -48,7 +48,7 @@ suite('Functional Tests', function() {
     
     test('PUT', function(done) {
       chai.request(server)
-      .get('/api/threads/main')
+      .put('/api/threads/main')
       .send({
         thread_id: globalId
       })
