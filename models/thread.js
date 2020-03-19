@@ -83,11 +83,11 @@ class Thread {
     let result;
     
     try {
-      result = await db.collection('threads').findOneAndUpdate({ _id: mongodb.ObjectId(idToReport) }, { reported: true });
+      result = await db.collection('threads').updateOne-({ _id: mongodb.ObjectId(idToReport) }, { $set: {reported: true }});
     } catch(error) {
       throw error;
     }
-    
+    console.log(result);
     return result;
   }
 }
