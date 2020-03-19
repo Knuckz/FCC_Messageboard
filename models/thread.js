@@ -78,14 +78,14 @@ class Thread {
     return result.value;
   }
   
-  static async reportThread() {
+  static async reportThread(idToReport) {
     const db = database.getDb();
     let result;
     
     try {
-      
+      result = await db.collection('threads').findOneAndUpdate({ _id: mongodb.ObjectId(idToReport) }, { reported: true });
     } catch(error) {
-      
+      throw error;
     }
     
     return result;

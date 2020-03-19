@@ -44,7 +44,13 @@ module.exports = function (app) {
     })
   })
   .put((req, res) => {
-    
+    Thread.reportThread(req.body.thread_id)
+    .then(ret => {
+      res.json(ret);
+    })
+    .catch(error => {
+      throw error;
+    })
   })
   .delete((req, res) => {
     Thread.deleteThread(req.body.thread_id)

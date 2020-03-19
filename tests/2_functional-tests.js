@@ -46,34 +46,32 @@ suite('Functional Tests', function() {
       });
     });
     
-    test('DELETE', function(done) {
+    test('PUT', function(done) {
       chai.request(server)
-      .delete('/api/threads/main')
+      .get('/api/threads/main')
       .send({
-        thread_id: globalId,
-        delete_password: 'what?'
+        thread_id: globalId
       })
       .end(function(error, result) {
         assert.equal(result.status, 200, 'status is 200');
-        assert.equal(result.body.message, 'success', 'message should be deleted')
+        assert.equal(result.body.message, 'success' , 'success message should be returned');
         done();
-      });
+      });  
     });
     
-    // test('PUT', function(done) {
+    // test('DELETE', function(done) {
     //   chai.request(server)
-    //   .get('/api/threads/main')
+    //   .delete('/api/threads/main')
     //   .send({
-    //     thread_id: globalId
+    //     thread_id: globalId,
+    //     delete_password: 'what?'
     //   })
     //   .end(function(error, result) {
     //     assert.equal(result.status, 200, 'status is 200');
-    //     assert.equal(result.body.message, 'success' , 'success message should be returned');
+    //     assert.equal(result.body.message, 'success', 'message should be deleted')
     //     done();
-    //   });  
+    //   });
     // });
-    
-
   });
   
   suite('API ROUTING FOR /api/replies/:board', function() {
