@@ -108,7 +108,11 @@ module.exports = function (app) {
   .put((req, res) => {
     Reply.reportReply(req.body.reply_id)
     .then(ret => {
-      console.log(ret);
+      if (ret.modifiedCount > 0) {
+        res.json({
+          message: 'success'
+        });
+      }
     })
     .catch(error => {
       throw error;

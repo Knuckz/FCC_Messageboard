@@ -58,7 +58,7 @@ class reply {
     let result
     
     try {
-      result = db.collection('replies').updateOne({ _id: mongodb.ObjectId(replyId) }, { reported: true });
+      result = db.collection('replies').updateOne({ _id: mongodb.ObjectId(replyId) }, { $set: { reported: true }});
     } catch(error) {
       throw error;
     }
