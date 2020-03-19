@@ -105,6 +105,15 @@ module.exports = function (app) {
       throw error;
     })
   })
+  .put((req, res) => {
+    Reply.reportReply(req.body.reply_id)
+    .then(ret => {
+      console.log(ret);
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
   .delete((req, res) => {
     Reply.deleteReply(req.body.reply_id)
     .then(ret => {
@@ -117,8 +126,5 @@ module.exports = function (app) {
     .catch(error => {
       throw error;
     });
-  })
-  .put((req, res) => {
-
   })
 };

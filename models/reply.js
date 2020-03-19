@@ -53,14 +53,14 @@ class reply {
     return repliesResult.value._id;
   }
   
-  static async reportReply() {
+  static async reportReply(replyId) {
     const db = database.getDb();
     let result
     
     try {
-      
+      result = db.collection('replies').updateOne({ _id: mongodb.ObjectId(replyId) }, { reported: true });
     } catch(error) {
-      
+      throw error;
     }
     
     return result;
